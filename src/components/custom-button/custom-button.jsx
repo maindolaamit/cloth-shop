@@ -1,11 +1,14 @@
 import "./customer-button.scss";
 
-const CustomButton = ({ children, ...otherProps }) => {
+const CustomerButton = ({ children, isGoogleSignedIn, ...otherProps }) => {
   return (
-    <button className="custom-button" {...otherProps}>
+    <button
+      className={`${isGoogleSignedIn ? "google-sign-in" : ""} custom-button`}
+      {...otherProps}
+    >
       {children}
     </button>
   );
 };
 
-export default CustomButton;
+export default CustomerButton;
