@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CollectionPreview from "../../components/collection-preview/collection-preview";
 import SHOP_DATA from "./shop.data";
 
