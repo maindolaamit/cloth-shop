@@ -1,18 +1,19 @@
 import "./sign-in.style.scss";
 import { useState } from "react";
+import FormInput from "../form-input/form-input";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     console.log(email, password);
     event.preventDefault();
     setEmail("");
     setPassword("");
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     if (name === "email") {
       setEmail(value);
@@ -27,22 +28,22 @@ const SignIn = () => {
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
-        <input
+        <FormInput
           name="email"
           type="email"
           value={email}
           onChange={handleChange}
+          label="Email"
           required
-        ></input>
-        <label>Email</label>
-        <input
+        ></FormInput>
+        <FormInput
           name="password"
           type="password"
           value={password}
           onChange={handleChange}
+          label="Password"
           required
-        ></input>
-        <label>Password</label>
+        ></FormInput>
         <input type="submit" value="Submit Form"></input>
       </form>
     </div>
