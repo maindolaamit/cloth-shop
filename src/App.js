@@ -3,6 +3,7 @@ import { Routes, Navigate, Route } from "react-router-dom";
 import HomePage from "./pages/home-page/homepage";
 import ShopPage from "./pages/shop-page/shoppage";
 import Header from "./components/header/header";
+import SingInAndSignUpPage from "./pages/singn-in-and-sing-up/singn-in-and-sign-up";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path="/signin" element={<SingInAndSignUpPage/>} />
       </Routes>
     </div>
   );
