@@ -3,9 +3,7 @@ import CollectionPreview from "../../components/collection-preview/collection-pr
 import SHOP_DATA from "./shop.data";
 
 const ShopPage = () => {
-  console.log(SHOP_DATA);
   const [collections] = useState(SHOP_DATA);
-  console.log(collections);
 
   return (
     <div className="shop-page">

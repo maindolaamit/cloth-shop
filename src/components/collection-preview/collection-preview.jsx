@@ -1,3 +1,4 @@
+import CollectionItem from "../collection-item/collection-item";
 import "./collection-preview.scss";
 
 const CollectionPreview = ({ title, items }) => {
@@ -5,11 +6,11 @@ const CollectionPreview = ({ title, items }) => {
     <div className="collection-preview">
       <h1 className="title">{title.toUpperCase()}</h1>
       <div className="preview">
-        {items.map((item) => (
-          <div key={item.id} className="item">
-            {item.name}
-          </div>
-        ))}
+        {items
+          .filter((item, idx) => idx < 4)
+          .map(({ id, ...otherProps }) => (
+            <CollectionItem key={id} {...otherProps}></CollectionItem>
+          ))}
       </div>
     </div>
   );
