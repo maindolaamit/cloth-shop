@@ -2,10 +2,13 @@ import "./header.style.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase/firebase.utils";
+import {useContext} from "react";
+import CurrentUserCtx from "../../contexts/current-user/current-user";
 
-const Header = ({authUser}) => {
-  console.log(authUser);
-  // function to handle singout
+const Header = () => {
+  const currentUser = useContext(CurrentUserCtx);
+  console.log(currentUser);
+  // function to handle signout
   const handleSignOut = () => {
     console.log("Signing out...");
     auth
@@ -30,7 +33,7 @@ const Header = ({authUser}) => {
         <Link className="option" to="/shop">
           CONTACT
         </Link>
-        {authUser ? (
+        {currentUser ? (
           <div className="option" onClick={handleSignOut}>
             Sign Out
           </div>
