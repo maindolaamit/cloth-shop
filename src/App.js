@@ -17,8 +17,9 @@ function App() {
           (await userRef).onSnapshot((snapShot) => {
             setCurrentUser({ id: snapShot.id, ...snapShot.data() });
           });
+        } else {
+          setCurrentUser(null);
         }
-        console.log(currentUser);
         // Now you either return just unregisterAuthObserver
         // which will be called when the component is unmounted
       });
