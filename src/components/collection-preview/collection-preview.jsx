@@ -1,4 +1,4 @@
-import CollectionItem from "../../ui/collection-item/collection-item";
+import ProductCard from "../../ui/product-card/product-card";
 import "./collection-preview.scss";
 
 const CollectionPreview = ({ title, items }) => {
@@ -9,7 +9,7 @@ const CollectionPreview = ({ title, items }) => {
         {items
           .filter((item, idx) => idx < 4)
           .map(({ id, ...otherProps }) => (
-            <CollectionItem key={id} {...otherProps}></CollectionItem>
+            <ProductCard key={id} {...otherProps}></ProductCard>
           ))}
       </div>
     </div>
