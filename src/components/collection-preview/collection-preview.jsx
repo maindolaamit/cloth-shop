@@ -1,4 +1,4 @@
-import CollectionItem from "../collection-item/collection-item";
+import CollectionItem from "../../ui/collection-item/collection-item";
 import "./collection-preview.scss";
 
 const CollectionPreview = ({ title, items }) => {

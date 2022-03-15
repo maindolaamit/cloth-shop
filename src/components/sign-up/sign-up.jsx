@@ -1,16 +1,24 @@
 import "./sign-up.scss";
 import {useState} from "react";
-import FormInput from "../form-input/form-input";
-import CustomButton from "../custom-button/custom-button";
-import {auth, createUserProfileDocument} from "../../firebase/firebase.utils";
+import FormInput from "../../ui/form-input/form-input";
+import CustomButton from "../../ui/custom-button/custom-button";
+import {createUserWithEmail} from "../../utils/firebase";
 import {useNavigate} from "react-router-dom";
+
+const defaultFormFeilds = {
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+};
 
 const SignUpComponent = (props) => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [displayName, setDisplayName] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [formFields, setFormFields] = useState(defaultFormFeilds);
+    const {displayName, email, password, confirmPassword} = formFields;
+    const resetFields = () => {
+        setFormFields(defaultFormFeilds);
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -25,34 +33,23 @@ const SignUpComponent = (props) => {
         }
         //
         try {
-            console.log("Creating user with email: " + email);
-            const {user} = await auth.createUserWithEmailAndPassword(
-                email,
-                password
-            );
-            await createUserProfileDocument(user, {displayName});
-            setDisplayName("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
+            const {user} = await createUserWithEmail(email, password);
+            // reset the fields
+            resetFields();
             navigate("/"); // Take user to homepage after sign up
         } catch (error) {
-            console.error(error);
+            if (error.code === 'auth/email-already-in-use') {
+                alert('Cannot create user, email already in use');
+            } else {
+                console.log('user creation encountered an error', error);
+            }
         }
     };
 
     const handleChange = (event) => {
         event.preventDefault();
         const {name, value} = event.target;
-        if (name === "email") {
-            setEmail(value);
-        } else if (name === "password") {
-            setPassword(value);
-        } else if (name === "confirmPassword") {
-            setConfirmPassword(value);
-        } else if (name === "displayName") {
-            setDisplayName(value);
-        }
+        setFormFields({...formFields, [name]: value});
     };
 
     return (
@@ -67,7 +64,7 @@ const SignUpComponent = (props) => {
                     value={displayName}
                     onChange={handleChange}
                     required="required"
-                ></FormInput>
+                />
                 <FormInput
                     type="email"
                     name="email"
@@ -75,7 +72,7 @@ const SignUpComponent = (props) => {
                     value={email}
                     onChange={handleChange}
                     required="required"
-                ></FormInput>
+                />
                 <FormInput
                     type="password"
                     name="password"
@@ -83,7 +80,7 @@ const SignUpComponent = (props) => {
                     value={password}
                     onChange={handleChange}
                     required="required"
-                ></FormInput>
+                />
                 <FormInput
                     type="password"
                     name="confirmPassword"
@@ -91,7 +88,7 @@ const SignUpComponent = (props) => {
                     value={confirmPassword}
                     onChange={handleChange}
                     required="required"
-                ></FormInput>
+                />
                 <div className="buttons">
                     <CustomButton type="submit" onClick={handleSubmit}>Sign Up</CustomButton>
                 </div>
