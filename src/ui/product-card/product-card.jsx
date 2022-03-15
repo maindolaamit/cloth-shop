@@ -9,7 +9,7 @@ const ProductCard = ({name, price, imageUrl}) => {
                 <span className="name">{name}</span>
                 <span className="price">{price}</span>
             </div>
-            <CustomButton buttonType="inverted"></CustomButton>
+            <CustomButton buttonType="inverted">Add to Cart</CustomButton>
         </div>
     );
 }
