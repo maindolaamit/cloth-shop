@@ -1,4 +1,4 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 
 export const CartContext = createContext({
     cart: [],
@@ -21,6 +21,7 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
     const [hidden, setHidden] = useState(true);
     const [itemsCount, setItemsCount] = useState(0);
+    const [cartTotal, setCartTotal] = useState(0);
 
     const toggleHidden = () => {
         setHidden(!hidden);
@@ -64,6 +65,11 @@ export const CartProvider = ({children}) => {
         }
     };
 
+    useEffect(() => {
+        const cartTotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        setCartTotal(cartTotal);
+    }, [cart]);
+
     const value = {
         cart,
         isHidden: hidden,
@@ -73,6 +79,7 @@ export const CartProvider = ({children}) => {
         deleteItem,
         clearCart,
         itemsCount,
+        cartTotal
     };
     return (<CartContext.Provider value={value}>
         {children}

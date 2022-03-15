@@ -4,6 +4,7 @@ import HomePage from "./pages/home-page/homepage";
 import ShopPage from "./pages/shop-page/shoppage";
 import Header from "./components/header/header";
 import SingInAndSignUpPage from "./pages/singn-in-and-sing-up/singn-in-and-sign-up";
+import CheckoutPage from "./pages/checkout/checkout-page";
 import {useContext} from "react";
 import {UserContext} from "./contexts/user-context";
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/shop" element={<ShopPage/>}/>
                 <Route path="/signin" element={currentUser ? <Navigate replace to="/home"/> : <SingInAndSignUpPage/>}/>
+                <Route path="/checkout" element={<CheckoutPage/>}/>
             </Routes>
         </div>
     );
