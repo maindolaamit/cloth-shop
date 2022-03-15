@@ -11,7 +11,6 @@ import CartDropdown from "../cart-dropdown/cart-dropdown";
 const Header = () => {
     const {currentUser} = useContext(UserContext);
     const {isHidden} = useContext(CartContext);
-    console.log("currentUser -> ", currentUser);
 
     return (
         <div className="header">

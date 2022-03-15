@@ -5,7 +5,6 @@ import {CartContext} from "../../contexts/cart-context";
 
 const CartIcon = () => {
     const {itemsCount, toggleHidden} = useContext(CartContext);
-    console.log(itemsCount);
     return (
         <div className="cart-icon-container" onClick={toggleHidden}>
             <ShoppingCartIcon className="shopping-icon"/>
