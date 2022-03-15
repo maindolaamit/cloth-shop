@@ -69,6 +69,7 @@ export const CartProvider = ({children}) => {
         const value = {
             cart,
             isHidden: hidden,
+            toggleHidden,
             addItem,
             removeItem,
             deleteItem,
