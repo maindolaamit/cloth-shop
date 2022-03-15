@@ -29,7 +29,7 @@ const CheckoutPage = () => {
                 const cartItemKey = cartItem.category + cartItem.id;
                 return <CheckoutItem key={cartItemKey} cartItem={cartItem}></CheckoutItem>
             })}
-            <div className={'total'}>TOTAL : {cartTotal}</div>
+            <div className={'total'}>TOTAL : ${cartTotal}</div>
         </div>
     );
 };

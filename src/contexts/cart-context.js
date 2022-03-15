@@ -33,7 +33,6 @@ export const CartProvider = ({children}) => {
     };
 
     const addItem = (newItem) => {
-        console.log(cart);
         const foundItem = cart.find(cartItem => newItem.id === cartItem.id && newItem.category === cartItem.category);
         if (foundItem) {
             const newCart = cart.map(cartItem => (cartItem.id === newItem.id && cartItem.category === newItem.category) ?
@@ -48,7 +47,7 @@ export const CartProvider = ({children}) => {
 
     const removeItem = (item) => {
         let newCart = cart.map(cartItem => {
-            if (cartItem.id === item.id) {
+            if (cartItem.id === item.id && cartItem.category === item.category) {
                 return {...cartItem, quantity: cartItem.quantity - 1};
             }
             return cartItem;
