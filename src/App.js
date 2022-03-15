@@ -9,24 +9,6 @@ import {UserContext} from "./contexts/user-context";
 
 function App() {
     const {currentUser} = useContext(UserContext);
-    // useEffect(
-    //     () => {
-    //         const unregisterAuthObserver = auth.onAuthStateChanged(async (user) => {
-    //             if (user) {
-    //                 const userRef = createUserProfileDocument(user);
-    //                 (await userRef).onSnapshot((snapShot) => {
-    //                     setCurrentUser({id: snapShot.id, ...snapShot.data()});
-    //                 });
-    //             } else {
-    //                 setCurrentUser(user);
-    //             }
-    //             // Now you either return just unregisterAuthObserver
-    //             // which will be called when the component is unmounted
-    //         });
-    //         return unregisterAuthObserver;
-    //     },
-    //     [] // Important, pass an empty array so to execute useEffect hook only once
-    // );
 
     return (
         <div>

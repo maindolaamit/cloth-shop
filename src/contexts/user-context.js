@@ -7,7 +7,7 @@ export const UserContext = createContext({
     }
 });
 
-export const UserContextProvider = ({children}) => {
+export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
     const value = {currentUser, setCurrentUser};
 
@@ -28,4 +28,4 @@ export const UserContextProvider = ({children}) => {
     );
 };
 
-export default UserContextProvider;
+export default UserProvider;
