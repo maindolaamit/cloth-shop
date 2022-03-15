@@ -6,16 +6,8 @@ import {useContext} from "react";
 import {UserContext} from "../../contexts/user-context";
 
 const Header = () => {
-    const {currentUser, setCurrentUser} = useContext(UserContext);
+    const {currentUser} = useContext(UserContext);
     console.log("currentUser -> ", currentUser);
-    // function to handle signout
-    const handleSignOut = () => {
-        try {
-            signOutUser().then(setCurrentUser(null));
-        } catch (e) {
-            console.log(e);
-        }
-    };
 
     return (
         <div className="header">
@@ -30,7 +22,7 @@ const Header = () => {
                     CONTACT
                 </Link>
                 {currentUser ? (
-                    <div className="option" onClick={handleSignOut}>
+                    <div className="option" onClick={signOutUser}>
                         Sign Out
                     </div>
                 ) : (

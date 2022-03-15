@@ -33,7 +33,7 @@ const SignUpComponent = (props) => {
         }
         //
         try {
-            const {user} = await createUserWithEmail(email, password);
+            await createUserWithEmail(email, password);
             // reset the fields
             resetFields();
             navigate("/"); // Take user to homepage after sign up

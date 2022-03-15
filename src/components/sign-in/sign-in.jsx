@@ -1,18 +1,14 @@
 import "./sign-in.style.scss";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import FormInput from "../../ui/form-input/form-input";
 import CustomButton from "../../ui/custom-button/custom-button";
 import {signInWithEmail, signInWithGoogle} from "../../utils/firebase";
-import {UserContext} from "../../contexts/user-context";
-import {useNavigate} from "react-router-dom";
 
 const defaultFormFields = {
     email: '',
     password: '',
 };
 const SignIn = () => {
-        const navigate = useNavigate();
-        const {setCurrentUser} = useContext(UserContext);
         const [formFields, setFormFields] = useState(defaultFormFields);
         const {email, password} = formFields;
         const resetFormFields = () => {
@@ -20,10 +16,8 @@ const SignIn = () => {
         };
         const handleSignInWithGoogle = async () => {
             try {
-                const user = await signInWithGoogle();
+                await signInWithGoogle();
                 resetFormFields();
-                setCurrentUser(user);
-                // navigate("/home"); // Take user to homepage after sign in
             } catch (e) {
                 console.log(e);
             }
@@ -31,10 +25,8 @@ const SignIn = () => {
         const handleSignInWithEmail = async (event) => {
             event.preventDefault();
             try {
-                const user = await signInWithEmail(email, password);
+                await signInWithEmail(email, password);
                 resetFormFields();
-                setCurrentUser(user);
-                // navigate("/home"); // Take user to homepage after sign in
             } catch (error) {
                 switch (error.code) {
                     case 'auth/wrong-password':
